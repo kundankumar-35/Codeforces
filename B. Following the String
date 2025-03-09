@@ -1,0 +1,65 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// Function to handle input and output for online judge
+void handle_online_judge() {
+    #ifndef ONLINE_JUDGE
+        freopen("input.in", "r", stdin);
+        freopen("output.out", "w", stdout);
+    #endif
+}
+
+
+
+void solve() {
+ int n ; cin>>n;
+ vector<int>a(n);
+ for(int& index : a) cin>>index;
+ // map<char , int>mp;
+    vector<int>charCount(26 , 0);
+
+string ans = "";
+
+for(int i=0 ; i<n ; i++){  // O(n)
+   
+        if(a[i]==0) // insert the unique character
+        {
+            for(char c ='a' ; c<='z' ; c++){  // O(26)
+                if(charCount[c-'a']==0){
+                    charCount[c-'a']++;
+                    ans+=c;
+                    break;
+                }
+            }
+        }
+        else{
+             for(char c ='a' ; c<='z' ; c++){
+                if(charCount[c - 'a']==a[i]){
+                    charCount[c-'a']++;
+                    ans+=c;
+                    break;
+                }
+            }
+        }
+    
+}
+
+
+cout<<ans<<endl;
+}
+
+// Main function
+int main() {
+    
+    handle_online_judge();
+
+    // Uncomment the following lines for multiple test cases
+    int t;
+    cin >> t;
+    while (t--) 
+        solve();
+    
+
+    return 0;
+}
