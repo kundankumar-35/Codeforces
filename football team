@@ -1,0 +1,50 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// Function to handle input and output for online judge
+void handle_online_judge() {
+    #ifndef ONLINE_JUDGE
+        freopen("input.in", "r", stdin);
+        freopen("output.out", "w", stdout);
+    #endif
+}
+
+
+
+void solve() {
+  string  a; cin>>a;
+
+  int ones = 0  ,zeroes = 0;
+  for(char c : a){
+    if(c=='0'){
+        zeroes++;
+        ones = 0; // reset
+    }else{
+        ones++;
+        zeroes = 0; // reset
+    }
+
+    if(zeroes>=7 || ones>=7){
+        cout<<"YES\n";
+        return ;
+    }
+  }
+
+  cout<<"NO\n";
+}
+
+// Main function
+int main() {
+    
+    handle_online_judge();
+
+    // Uncomment the following lines for multiple test cases
+    // int t;
+    // cin >> t;
+    // while (t--) 
+        solve();
+    
+
+    return 0;
+}
