@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// Function to handle input and output for online judge
+void handle_online_judge() {
+    #ifndef ONLINE_JUDGE
+        freopen("input.in", "r", stdin);
+        freopen("output.out", "w", stdout);
+    #endif
+}
+
+
+
+void solve() {
+  string  a, b; cin>>a>>b;
+
+  int ans = a.size() + b.size();
+  for(int start = 0 ; start<b.size() ; start++){
+    int end = start;
+    for(int i=0 ; i<a.size() ; i++){
+        if(end<b.size() && a[i]==b[end]) end++;
+    }
+
+    int matched_len = end - start; 
+
+    ans = min(ans , (int)a.size() + (int)b.size() - matched_len);
+  }
+
+  cout<<ans<<"\n";
+}
+
+// Main function
+int main() {
+    
+    handle_online_judge();
+
+    // Uncomment the following lines for multiple test cases
+    int t;
+    cin >> t;
+    while (t--) 
+        solve();
+    
+
+    return 0;
+}
