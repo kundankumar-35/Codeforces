@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// Function to handle input and output for online judge
+void handle_online_judge() {
+    #ifndef ONLINE_JUDGE
+        freopen("input.in", "r", stdin);
+        freopen("output.out", "w", stdout);
+    #endif
+}
+
+
+
+void solve() {
+ int n ; cin>>n;
+ string a ; cin>>a;
+ stack<char>st;
+ for(char c : a){
+    if(!st.empty() && c==')' && st.top()=='(') st.pop(); // regular baracket
+    else st.push(c);
+ }
+
+ cout<<(int)st.size()/2<<endl;
+}
+
+// Main function
+int main() {
+    
+    handle_online_judge();
+
+    // Uncomment the following lines for multiple test cases
+    int t;
+    cin >> t;
+    while (t--) 
+        solve();
+    
+
+    return 0;
+}
