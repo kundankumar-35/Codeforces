@@ -1,0 +1,56 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+
+// Function to handle input and output for online judge
+void handle_online_judge() {
+    #ifndef ONLINE_JUDGE
+        freopen("input.in", "r", stdin);
+        freopen("output.out", "w", stdout);
+    #endif
+}
+
+
+
+
+void solve() {
+string s ; cin>>s;
+int n = s.size();
+
+vector<int>prefixSum(n , 0);
+for(int i=1 ; i<n ; i++){
+    prefixSum[i] = prefixSum[i-1]; // previous cumulative sum
+    if(s[i]==s[i-1]){
+        prefixSum[i]+=1;
+    }
+}
+
+int m ; cin>>m;
+ while(m--){
+    int left , right; cin>>left>>right;
+    left--;
+    right--;  // this is used to handle 0 based indexing
+    
+   int ans = prefixSum[right] - prefixSum[left];
+ 
+
+    cout<<ans<<"\n"; 
+
+ }
+
+}
+
+// Main function
+int main() {
+    
+    handle_online_judge();
+
+    // Uncomment the following lines for multiple test cases
+    // int t;
+    // cin >> t;
+    // while (t--) 
+        solve();
+    
+
+    return 0;
+}
