@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// Function to handle input and output for online judge
+void handle_online_judge() {
+    #ifndef ONLINE_JUDGE
+        freopen("input.in", "r", stdin);
+        freopen("output.out", "w", stdout);
+    #endif
+}
+
+
+
+
+void solve() {
+ long long n ; cin>>n;
+ for(long long i=2  ; i*i*i<=n ; i++){
+    if(n%i==0){
+        long long a = i;
+        // find the two another elements that product is n/i
+        long long m = n/i;
+        for(long long b = 2 ; b*b<=m; b++){
+            if(b==a)continue;  //skip
+            if(m%b==0 && m/b != a && m/b != b ){
+                cout<<"YES\n";
+                cout<<a<<" "<<b<<" "<<m/b<<"\n";
+                return;
+            }
+        }
+    }
+
+ }
+
+ cout<<"NO\n";
+}
+
+// Main function
+int main() {
+    
+    handle_online_judge();
+
+    // Uncomment the following lines for multiple test cases
+    int t;
+    cin >> t;
+    while (t--) 
+        solve();
+    
+
+    return 0;
+}
