@@ -1,0 +1,65 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+
+// Function to handle input and output for online judge
+void handle_online_judge() {
+    #ifndef ONLINE_JUDGE
+        freopen("input.in", "r", stdin);
+        freopen("output.out", "w", stdout);
+    #endif
+}
+
+
+
+
+void solve() {
+ ll n  , k; cin>>n>>k;
+ 
+ vector<ll>arr(n);
+ for(auto& index : arr) cin>>index;
+
+    ll sum = 0   , min_sum = 1e18 ;
+    int startIndex  = 0;
+
+    // caluclate the first window sum 
+
+    for(int i=0 ; i<k ; i++)sum+=arr[i];
+
+
+    min_sum = sum;
+    startIndex = 0;
+
+
+    for(int i = k ; i<n ; i++){
+        sum+= (arr[i] - arr[i-k]);
+
+        if(sum<min_sum){
+            min_sum  = sum;
+            startIndex = i-k+1;  // this is correct index
+        }
+    }    
+
+  
+   cout<<startIndex+1<<endl;
+
+// for(ll i = startIndex ; i<startIndex + k ; i++){
+//     cout<<arr[i]<<" ";
+// }
+
+}
+
+// Main function
+int main() {
+    
+    handle_online_judge();
+
+    // Uncomment the following lines for multiple test cases
+    // int t;
+    // cin >> t;
+    // while (t--) 
+        solve();
+    
+
+    return 0;
+}
