@@ -1,0 +1,65 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+
+// Function to handle input and output for online judge
+void handle_online_judge() {
+    #ifndef ONLINE_JUDGE
+        freopen("input.in", "r", stdin);
+        freopen("output.out", "w", stdout);
+    #endif
+}
+
+int  dp_solve(int i , vector<int>&days , bool contest , bool sports , vector<vector<vector<int>>>&dp){
+    int n = days.size();
+    if(i>=n) return 0;
+    int rest = INT_MAX;
+
+    if(dp[i][contest][sports] !=-1) return dp[i][contest][sports];
+
+    // if(days[i]==0){  // if we want we take rest any days  rest means no sport and no contest
+        int rest =  1 + dp_solve(i+1 , days , false , false , dp);  // rest
+    // }
+     if(days[i]==1 && !contest) {
+        rest = min(rest ,   dp_solve(i+1 , days , true ,false , dp));
+    }
+     if(days[i]==2 && !sports){
+      rest = min(rest ,  dp_solve(i+1 , days , false , true , dp));
+    }
+    if(days[i]==3){ 
+        // we cann't do both at the same day
+        if(!contest) rest = min(rest , dp_solve(i+1 , days , true , false , dp));
+        if(!sports) rest = min(rest , dp_solve(i+1 , days , false , true , dp));
+    } 
+
+    return dp[i][contest][sports] = rest;
+}
+
+
+void solve() {
+    int n ; cin>>n;
+    vector<int>days(n);
+    vector<vector<vector<int>>>dp(n , vector<vector<int>>(2 , vector<int>(2 , -1)));
+    for(int &pos : days) cin>>pos;
+        cout<<dp_solve(0 , days , false , false , dp);
+  
+}
+
+
+
+
+
+// Main function
+int main() {
+    
+    handle_online_judge();
+
+    // Uncomment the following lines for multiple test cases
+    // int t;
+    // cin >> t;
+    // while (t--) 
+        solve();
+    
+
+    return 0;
+}
