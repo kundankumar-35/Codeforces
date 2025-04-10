@@ -1,0 +1,52 @@
+#include<iostream>
+#include<bits/stdc++.h>
+#include<vector>
+#include<limits.h>
+#include<unordered_set>
+using namespace std;
+#define ll long long 
+
+void handleInput(){
+     #ifndef ONLINE_JUDGE
+        freopen("input.in","r",stdin);
+        freopen("output.out","w",stdout);
+    #endif  
+}
+
+
+
+
+
+    void solve(){
+       ll n ,m; cin>>n>>m;
+       vector<ll>a(n) , b(m);
+       for(ll& pos  : a) cin>>pos;
+       for(ll& pos  : b) cin>>pos; 
+       sort(a.rbegin() , a.rend());  // ratting sort in desending order
+
+       ll totalCost = 0;
+       int giftIndex = 0;
+       for(int i=0 ; i<n ; i++){
+        // two choice 
+        if(giftIndex <= a[i]-1  && b[giftIndex] <= b[a[i]-1]){
+            totalCost += (b[giftIndex++]);
+        }else{
+           totalCost += b[a[i]-1];
+        }
+       }
+        
+       cout<<totalCost<<"\n";
+       
+
+    }
+
+int main(){
+
+    handleInput();  // this is used to take input and print the output
+
+    int  test ; cin>>test;
+    while(test--)
+        solve();
+    return 0;
+
+}
